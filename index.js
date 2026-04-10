@@ -12,9 +12,14 @@ const { initSocket } = require('./src/sockets');
 
 const app = express();
 
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  'https://frontend-eta-tan-60.vercel.app',
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+    origin: allowedOrigins,
     credentials: true,
   })
 );
